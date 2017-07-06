@@ -16,5 +16,7 @@ div.post-content {
     max-height: 600px;
     width: auto;
     margin: 0 auto; }
+  div.post-content div.payments {
+    margin-bottom: 20px; }
 
 /*# sourceMappingURL=post.css.map */

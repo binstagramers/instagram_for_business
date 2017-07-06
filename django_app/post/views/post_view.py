@@ -32,3 +32,16 @@ def post_create(request):
         'form': form,
     }
     return render(request, 'post/post_create.html', context)
+
+
+def order(request, post_pk):
+    post = Post.objects.get(pk=post_pk)
+    if request.method == 'POST':
+        pass
+    elif request.method == 'GET':
+        form = PostForm()
+    context = {
+        'form': form,
+        'post': post,
+    }
+    return render(request, 'post/order.html', context=context)
