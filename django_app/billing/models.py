@@ -86,6 +86,8 @@ class PointTransaction(models.Model):
         ordering = ['-created']
 
 
+# 거래 후 아임포트에서 넘긴 결과
+# 데이터베이스에 실제 결제된 정보가 있는지 체크
 def new_point_trans_validation(sender, instance, created, *args, **kwargs):
     if instance.transaction_id:
         v_trans = PointTransaction.objects.validation_trans(
@@ -107,4 +109,5 @@ def new_point_trans_validation(sender, instance, created, *args, **kwargs):
             raise ValueError('비정상적인 거래입니다.')
 
 
+# 그리고 save!
 post_save.connect(new_point_trans_validation, sender=PointTransaction)
