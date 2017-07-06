@@ -1,0 +1,27 @@
+header.post-header {
+  margin-top: 20px;
+  .profile-image {
+    height: 60px;
+    img {
+      height: 100%;
+    }
+  }
+  background-color: white;
+}
+
+div.post-content {
+  .row {
+    margin: 0;
+  }
+  height: 800px;
+  background-color: white;
+  .photo {
+    img {
+      display: block;
+      max-height: 600px;
+      width: auto;
+          margin: 0 auto;
+    }
+  }
+
+}
