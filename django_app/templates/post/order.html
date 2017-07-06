@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    {% include 'include/post.html' %}
+    <form action="" method="POST">
+    {% csrf_token %}
+        <div class="payments">
+            <a href="">
+                <button type="submit" class="btn-group-justified">결제하기</button>
+            </a>
+            </div>
+    </form>
+
+{% endblock %}
