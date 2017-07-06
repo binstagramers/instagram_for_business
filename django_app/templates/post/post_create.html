@@ -1,0 +1,9 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+        {{ form }}
+    <button class="btn btn-default">만들기</button>
+    </form>
+{% endblock %}

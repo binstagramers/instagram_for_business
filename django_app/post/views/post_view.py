@@ -18,7 +18,17 @@ def post_list(request):
 
 def post_create(request):
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(data=request.POST, files=request.FILES)
         if form.is_valid():
-            form.save(author=request.user)
+            photo = form.cleaned_data['photo']
+            Post.objects.create(
+                author=request.user,
+                photo=photo,
+            )
         return redirect('post:post_list')
+    elif request.method == 'GET':
+        form = PostForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'post/post_create.html', context)
