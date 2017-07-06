@@ -1,11 +1,17 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
 
-from ..form import PostForm
+from ..form import PostForm, PaymentsForm
 from ..models import Post
 
 User = get_user_model()
 
+
+__all__ =(
+    'post_list',
+    'post_create',
+    'order',
+)
 
 def post_list(request):
     posts = Post.objects.all()
@@ -36,9 +42,7 @@ def post_create(request):
 
 def order(request, post_pk):
     post = Post.objects.get(pk=post_pk)
-    if request.method == 'POST':
-        pass
-    elif request.method == 'GET':
+    if request.method == 'GET':
         form = PostForm()
     context = {
         'form': form,

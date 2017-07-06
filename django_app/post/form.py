@@ -9,3 +9,7 @@ class PostForm(forms.ModelForm):
         fields = [
             'photo',
         ]
+
+
+class PaymentsForm(forms.Form):
+    price = forms.IntegerField()

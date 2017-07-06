@@ -2,13 +2,10 @@
 
 {% block content %}
     {% include 'include/post.html' %}
-    <form action="" method="POST">
     {% csrf_token %}
-        <div class="payments">
-            <a href="">
-                <button type="submit" class="btn-group-justified">결제하기</button>
-            </a>
-            </div>
-    </form>
-
+    <div class="payments">
+        <a href="{% url 'charge' %}">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">결제하기</button>
+        </a>
+    </div>
 {% endblock %}

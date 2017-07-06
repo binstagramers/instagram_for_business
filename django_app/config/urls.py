@@ -20,13 +20,15 @@ from django.contrib import admin
 
 from billing.views import charge_point, PointCheckoutAjaxView, PointImpAjaxView
 
+
 urlpatterns = [
-    url(r'^charge/$', charge_point),
+    url(r'^charge/$', charge_point, name='charge'),
     url(r'^checkout/$', PointCheckoutAjaxView.as_view(), name='point_checkout'),
     url(r'^validation/$', PointImpAjaxView.as_view(), name='point_validation'),
     url(r'^admin/', admin.site.urls),
     url(r'^member/', include('member.urls')),
     url(r'^post/', include('post.urls')),
+    url(r'^$', include('post.urls'))
 ]
 # /static/에 대한 요청을 STATIC_ROOT경로의 파일에서 찾는다
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
