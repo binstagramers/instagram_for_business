@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth import authenticate
 
 from .models import User
 
@@ -28,9 +29,6 @@ class SignUpForm(forms.Form):
         return username
 
     def clean_password2(self):
-        # password1과 password2를 비교하여 같은지 검증
-        # password2필드에 clean_<fieldname>을 재정의한 이유는,
-        #   cleaned_data에 password1이 이미 들어와 있어야 하기 때문
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
         if password1 and password2 and password1 != password2:
@@ -38,3 +36,42 @@ class SignUpForm(forms.Form):
                 'Password mismatch',
             )
         return password2
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(
+        max_length=30,
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': '사용자 아이디를 입력하세요',
+            }
+        )
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': '비밀번호를 입력하세요',
+            }
+        )
+    )
+
+    def clean(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
+
+        # username, password를 이용해 사용자 authenticate
+        user = authenticate(
+            username=username,
+            password=password
+        )
+        # 인증에 성공할 경우, Form의 cleaned_data의 'user'
+        # 키에 인증된 User객체를 할당
+        if user is not None:
+            self.cleaned_data['user'] = user
+        # 인증에 실패한 경우, is_valid()를 통과하지 못하도록
+        # ValidationError를 발생시킴
+        else:
+            raise forms.ValidationError(
+                'Login credentials not valid'
+            )
+        return self.cleaned_data
