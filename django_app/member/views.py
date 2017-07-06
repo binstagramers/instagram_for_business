@@ -1,11 +1,5 @@
 from django.contrib.auth import \
-    login as django_login, \
-    get_user_model
-from django.shortcuts import render, redirect
-
-from .form import SignUpForm, LoginForm
-from django.contrib.auth import \
-    login as django_login, \
+    login as django_login, logout as django_logout, \
     get_user_model
 from django.shortcuts import render, redirect
 
@@ -21,7 +15,7 @@ def create_user(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             image_profile = form.cleaned_data['image_profile']
-            User.objects.create(
+            User.objects.create_user(
                 username=username,
                 password=password,
                 image_profile=image_profile,
@@ -38,7 +32,7 @@ def create_user(request):
 
 def login(request):
     if request.method == 'POST':
-        form = LoginForm(data=request.POST)
+        form = LoginForm(request.POST)
         if form.is_valid():
             user = form.cleaned_data['user']
             django_login(request, user)
@@ -55,3 +49,8 @@ def login(request):
         'form': form,
     }
     return render(request, 'member/login.html', context)
+
+
+def logout(request):
+    django_logout(request)
+    return redirect('post:post_list')

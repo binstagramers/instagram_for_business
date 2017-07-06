@@ -7,7 +7,7 @@
         <div>비밀번호2 :{{ form.password2 }}</div>
         <div>프로필이미지 : {{ form.image_profile }}</div>
         {% csrf_token %}
-        <button class="btn btn-default">가입하기</button>
+        <button class="btn btn-default" type="submit">가입하기</button>
     </form>
 
 {% endblock %}
