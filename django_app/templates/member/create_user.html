@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <form action="" method="POST" enctype="multipart/form-data">
+        <div>유저네임 : {{ form.username }}</div>
+        <div>비밀번호1 : {{ form.password1 }}</div>
+        <div>비밀번호2 :{{ form.password2 }}</div>
+        <div>프로필이미지 : {{ form.image_profile }}</div>
+        {% csrf_token %}
+        <button class="btn btn-default">가입하기</button>
+    </form>
+
+{% endblock %}
