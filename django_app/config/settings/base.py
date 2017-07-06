@@ -13,6 +13,9 @@ import json
 import os
 from utils.keys import abc, xyz
 
+
+LOGIN_URL = 'member:login'
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ROOT_DIR = os.path.dirname(BASE_DIR)

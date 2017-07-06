@@ -6,8 +6,6 @@ django-storages<1.7
 boto3<1.5
 
 iamport-rest-client==0.5.2
-certifi==2017.4.17
-chardet==3.0.4
-idna==2.5
-requests==2.18.1
-urllib3==1.21.1
+requests<=2.9.1
+awsebcli<=3.2
+

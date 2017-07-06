@@ -62,7 +62,7 @@ class LoginForm(forms.Form):
         # username, password를 이용해 사용자 authenticate
         user = authenticate(
             username=username,
-            password=password
+            password=password,
         )
         # 인증에 성공할 경우, Form의 cleaned_data의 'user'
         # 키에 인증된 User객체를 할당

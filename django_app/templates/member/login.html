@@ -3,7 +3,8 @@
 {% block content %}
     <form action="" method="POST">
         {% csrf_token %}
-        {{ form }}
-        <button class="btn btn-default">로그인</button>
+        <div>유저아이디{{ form.username }}</div>
+        <div>비밀번호{{ form.password }}</div>
+        <button class="btn btn-default" type="submit">로그인</button>
     </form>
 {% endblock %}
