@@ -110,3 +110,5 @@ STATICFILES_DIRS = [
     STATIC_DIR,
 ]
 
+# Authentication
+AUTH_USER_MODEL = 'member.User'
