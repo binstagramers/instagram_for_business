@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from utils.keys import abc, xyz
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -37,7 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'billing',
 ]
+
+IAMPORT_KEY = abc
+IAMPORT_SECRET = xyz
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
